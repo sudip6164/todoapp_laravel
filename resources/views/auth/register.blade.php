@@ -8,7 +8,7 @@
         <label for="password">Password:</label><br>
         <input type="password" name="password" placeholder="Password" required><br>
         <label for="password_confirmation">Confirm Password:</label><br>
-        <input type="password" name="password_confirmation" placeholder="Confirm Password" required>
+        <input type="password" name="password_confirmation" placeholder="Confirm Password" required><br>
         <button type="submit">Register</button>
     </form>
 </x-layout>
