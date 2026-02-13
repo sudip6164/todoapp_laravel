@@ -38,9 +38,7 @@ class TaskController extends Controller
     {
         $task = Task::findOrFail($id);
 
-        if ($task->user_id !== auth()->id()) {
-            abort(403);
-        }
+        $this->authorize('delete', $task);
 
         $task->delete();
 
@@ -49,13 +47,19 @@ class TaskController extends Controller
 
     public function show($id)
     {
-        $task= Task::findOrFail($id);
+        $task = Task::findOrFail($id);
+
+        $this->authorize('view', $task);
+
         return view('tasks.show', compact('task'));
     }
 
     public function editPage($id)
     {
         $task = Task::findOrFail($id);
+
+        $this->authorize('update', $task);
+
         return view('tasks.edit', compact('task'));
     }
 
@@ -63,9 +67,7 @@ class TaskController extends Controller
     {
         $task = Task::findOrFail($id);
 
-        if ($task->user_id !== auth()->id()) {
-            abort(403);
-        }
+        $this->authorize('update', $task);
 
         $request->validate([
             'title' => 'required|string|max:255',
