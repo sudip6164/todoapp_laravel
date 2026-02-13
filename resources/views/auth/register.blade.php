@@ -11,4 +11,5 @@
         <input type="password" name="password_confirmation" placeholder="Confirm Password" required><br>
         <button type="submit">Register</button>
     </form>
+    Do not have account?<a href="{{ route('loginPage') }}">Login</a>
 </x-layout>

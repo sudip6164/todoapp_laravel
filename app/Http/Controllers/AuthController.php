@@ -25,6 +25,29 @@ class AuthController extends Controller
             'password' => Hash::make($validated['password'])
         ]);
 
-        return redirect()->route('registerPage')->with('success', 'Registration successful. You can now log in.');
+        return redirect()->route('loginPage')->with('success', 'Registration successful. You can now log in.');
+    }
+
+    public function loginPage(){
+        return view('auth.login');
+    }
+
+    public function login(Request $request){
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (auth()->attempt($credentials)) {
+            return redirect()->route('home');
+        }
+
+        return back()->withErrors(['email' => 'Invalid credentials.']);
+    }
+
+    public function logout()
+    {
+        auth()->logout();
+        return redirect()->route('loginPage');
     }
 }
