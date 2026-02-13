@@ -46,4 +46,10 @@ class TaskController extends Controller
 
         return redirect()->route('tasksIndex')->with('success', 'Task deleted successfully!');
     }
+
+    public function show($id)
+    {
+        $task= Task::findorFail($id);
+        return view('tasks.show', compact('task'));
+    }
 }
