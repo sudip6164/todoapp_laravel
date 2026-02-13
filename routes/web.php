@@ -16,6 +16,8 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/tasks', [TaskController::class, 'index'])->name('tasksIndex');
+Route::middleware('auth')->prefix('tasks')->group(function () {
+    Route::get('/', [TaskController::class, 'index'])->name('tasksIndex');
+    Route::get('/create', [TaskController::class, 'createPage'])->name('tasksCreatePage');
+    Route::post('/create', [TaskController::class, 'create'])->name('tasksCreate');
 });
