@@ -20,4 +20,5 @@ Route::middleware('auth')->prefix('tasks')->group(function () {
     Route::get('/', [TaskController::class, 'index'])->name('tasksIndex');
     Route::get('/create', [TaskController::class, 'createPage'])->name('tasksCreatePage');
     Route::post('/create', [TaskController::class, 'create'])->name('tasksCreate');
+    Route::post('/{task}/delete', [TaskController::class, 'delete'])->name('tasksDelete');
 });
