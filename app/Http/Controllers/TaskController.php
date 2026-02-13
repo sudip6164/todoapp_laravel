@@ -34,8 +34,10 @@ class TaskController extends Controller
         return redirect()->route('tasksIndex')->with('success', 'Task created successfully!');
     }
 
-    public function delete(Task $task)
+    public function delete($id)
     {
+        $task = Task::findOrFail($id);
+
         if ($task->user_id !== auth()->id()) {
             abort(403);
         }

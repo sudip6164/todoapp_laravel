@@ -7,17 +7,6 @@
             </a>
         </div>
 
-        @if(session('success'))
-            <div class="p-4 mb-6 text-sm text-green-700 bg-green-100 border border-green-200 rounded-lg">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        @if($tasks->isEmpty())
-            <div class="text-center py-12 bg-gray-50 rounded-xl border-2 border-dashed border-gray-200">
-                <p class="text-gray-500 italic">No tasks yet. Start by creating one!</p>
-            </div>
-        @else
             <div class="space-y-4">
                 @foreach($tasks as $task)
                     <div class="p-6 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-shadow">
@@ -47,6 +36,5 @@
                     </div>
                 @endforeach
             </div>
-        @endif
     </div>
 </x-layout>
