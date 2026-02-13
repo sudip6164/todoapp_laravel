@@ -49,7 +49,36 @@ class TaskController extends Controller
 
     public function show($id)
     {
-        $task= Task::findorFail($id);
+        $task= Task::findOrFail($id);
         return view('tasks.show', compact('task'));
+    }
+
+    public function editPage($id)
+    {
+        $task = Task::findOrFail($id);
+        return view('tasks.edit', compact('task'));
+    }
+
+    public function edit(Request $request, $id)
+    {
+        $task = Task::findOrFail($id);
+
+        if ($task->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'status' => 'required|in:todo,doing,done',
+        ]);
+
+        $task->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('tasksIndex')->with('success', 'Task updated successfully!');
     }
 }

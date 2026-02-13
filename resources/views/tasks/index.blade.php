@@ -26,9 +26,9 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="flex flex-col sm:flex-row gap-2 ml-4">
-                                
+                            <div class="flex flex-col sm:flex-row gap-2 ml-4">                                
                                 <a href="{{ route('tasksShow', $task->id) }}" class="text-xs font-bold px-3 py-1.5 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 text-center">View</a>
+                                <a href="{{ route('tasksEditPage', $task->id) }}" class="text-xs font-bold px-3 py-1.5 bg-blue-50 text-blue-600 rounded hover:bg-blue-100 text-center">Edit</a>
                                 <form action="{{ route('tasksDelete', $task->id) }}" method="POST" onsubmit="return confirm('Are you sure?')" class="inline">
                                     @csrf
                                     <button type="submit" class="w-full text-xs font-bold px-3 py-1.5 bg-red-50 text-red-600 rounded hover:bg-red-100">Delete</button>
