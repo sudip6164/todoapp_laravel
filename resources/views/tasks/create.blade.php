@@ -7,14 +7,14 @@
                 @csrf
                 <div>
                     <label for="title" class="block text-sm font-semibold text-gray-700 ml-1 mb-1">Task Title</label>
-                    <input type="text" name="title" id="title" placeholder="What needs to be done?" required 
+                    <input type="text" name="title" id="title" placeholder="What needs to be done?" value="{{ old('title') }}" required 
                            class="w-full px-5 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-800 focus:border-transparent transition-all outline-none text-gray-800">
                 </div>
 
                 <div>
                     <label for="description" class="block text-sm font-semibold text-gray-700 ml-1 mb-1">Description (Optional)</label>
-                    <textarea name="description" id="description" rows="4" placeholder="Add some details..." 
-                              class="w-full px-5 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-800 focus:border-transparent transition-all outline-none text-gray-800 resize-none"></textarea>
+                    <textarea name="description" id="description" rows="4" placeholder="Add some details..."
+                              class="w-full px-5 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-800 focus:border-transparent transition-all outline-none text-gray-800 resize-none">{{ old('description') }}</textarea>
                 </div>
 
                 <div class="flex flex-col sm:flex-row gap-4 pt-4">

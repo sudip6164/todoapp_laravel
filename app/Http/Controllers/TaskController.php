@@ -23,7 +23,7 @@ class TaskController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:255|min:4',
             'description' => 'nullable|string',
         ]);
 
@@ -72,7 +72,7 @@ class TaskController extends Controller
         $this->authorize('update', $task);
 
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:255|min:4',
             'description' => 'nullable|string',
             'status' => 'required|in:todo,doing,done',
         ]);
