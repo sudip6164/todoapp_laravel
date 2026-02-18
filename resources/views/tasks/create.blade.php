@@ -5,6 +5,9 @@
             
             <form action="{{ route('tasksCreate') }}" method="post" class="space-y-6">
                 @csrf
+                @error('title')
+                <div class="p-4 mb-4 text-sm rounded-base bg-red-200"><span>*{{ $message }}</span></div>
+                @enderror
                 <div>
                     <label for="title" class="block text-sm font-semibold text-gray-700 ml-1 mb-1">Task Title</label>
                     <input type="text" name="title" id="title" placeholder="What needs to be done?" value="{{ old('title') }}" required 
