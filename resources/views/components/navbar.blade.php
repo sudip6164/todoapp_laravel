@@ -1,18 +1,32 @@
-<nav class="bg-gray-800 text-white p-4 flex justify-between">
+<nav class="bg-gray-800 text-white p-4 flex justify-between items-center shadow-lg">
     <div>
-        <a href="/" class="font-bold">Todoapp</a>
+        <a href="/" class="text-xl font-bold tracking-tight hover:text-gray-300 transition-colors">Todoapp</a>
     </div>
-    <div class="space-x-4">
-        <a href="/" class="hover:underline">Home</a>
+    <div class="flex items-center space-x-6">
+        <a href="/" class="text-sm font-medium hover:text-gray-300 transition-colors">Home</a>
         @auth
-            <span>Logged in as: {{ auth()->user()->name }}</span>
-            <form action="{{ route('logout') }}" method="POST" style="display:inline;">
-                @csrf
-                <button type="submit" class="hover:underline" style="background:none; border:none; color:inherit; cursor:pointer; padding:0;">Logout</button>
-            </form>
+            <div class="flex items-center space-x-4">
+                <a href="{{ route('profileEditPage') }}" class="flex items-center space-x-2 group">
+                    @if(auth()->user()->profile_picture)
+                        <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt="Avatar" class="h-8 w-8 rounded-full object-cover border-2 border-gray-700 group-hover:border-gray-500 transition-all">
+                    @else
+                        <div class="h-8 w-8 rounded-full bg-gray-700 flex items-center justify-center text-[10px] font-bold uppercase border-2 border-gray-600 group-hover:border-gray-500 transition-all">
+                            {{ substr(auth()->user()->name, 0, 1) }}
+                        </div>
+                    @endif
+                    <span class="text-sm font-semibold group-hover:text-gray-300 transition-colors">{{ auth()->user()->name }}</span>
+                </a>
+                
+                <form action="{{ route('logout') }}" method="POST" class="inline">
+                    @csrf
+                    <button type="submit" class="text-xs font-bold uppercase tracking-wider text-gray-400 hover:text-white transition-colors">Logout</button>
+                </form>
+            </div>
         @else
-            <a href="{{ route('loginPage') }}" class="hover:underline">Login</a>
-            <a href="{{ route('registerPage') }}" class="hover:underline">Register</a>
+            <div class="space-x-4">
+                <a href="{{ route('loginPage') }}" class="text-sm font-medium hover:text-gray-300 transition-colors">Login</a>
+                <a href="{{ route('registerPage') }}" class="px-4 py-2 bg-white text-gray-800 text-sm font-bold rounded-lg hover:bg-gray-100 transition-all">Register</a>
+            </div>
         @endauth
     </div>
 </nav>

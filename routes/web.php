@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,4 +25,9 @@ Route::middleware('auth')->prefix('tasks')->group(function () {
     Route::get('/show/{id}', [TaskController::class, 'show'])->name('tasksShow');
     Route::get('/edit/{id}', [TaskController::class, 'editPage'])->name('tasksEditPage');
     Route::post('/edit/{id}', [TaskController::class, 'edit'])->name('tasksEdit');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'editPage'])->name('profileEditPage');
+    Route::post('/profile', [ProfileController::class, 'edit'])->name('profileEdit');
 });

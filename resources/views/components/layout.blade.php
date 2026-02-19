@@ -6,10 +6,10 @@
     <title>{{ $title ?? 'Laravel' }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="flex flex-col min-h-screen">
     <x-navbar></x-navbar>
 
-    <main>
+    <main class="flex-grow">
         {{ $slot }}
     </main>
 
